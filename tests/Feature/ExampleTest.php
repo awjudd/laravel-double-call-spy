@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
@@ -14,8 +15,8 @@ class ExampleTest extends TestCase
      */
     public function test_example()
     {
-        $response = $this->get('/');
+        $this->assertNotNull(DB::spy(), 'first time - returns the spy');
 
-        $response->assertStatus(200);
+        $this->assertNotNull(DB::spy(), 'second time - returns null');
     }
 }
